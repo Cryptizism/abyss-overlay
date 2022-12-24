@@ -606,7 +606,7 @@ function main(event){
             let changed = false;
             if (msg.indexOf('ONLINE:') !== -1 && msg.indexOf(',') !== -1){
                 if (inlobby){players = [];} inlobby = false;
-                let who = msg.substring(8).split(/,\s/ig).map(str => str.replace(/[^a-zA-Z0-9_]/g, ''));
+                let who = msg.substring(8).split(/,\s/ig).map(str => str.replace(/(\s\W.\W|[^a-zA-Z0-9_])/g, ''));
                 if (config.get('settings.shrink', true)){currentWindow.setSize(currentWindow.webContents.getOwnerBrowserWindow().getBounds().width, winheight, true); $('#show').css('transform', 'rotate(0deg)');}
                 if ($('#infodiv').css('display') === 'none' && $('#settingsdiv').css('display') === 'none'){$('#titles').css('display', 'block'); $('#indexdiv').css('display', 'block');}
                 //con.log(who);
